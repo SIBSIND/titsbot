@@ -1,7 +1,7 @@
 <?php
 echo "Settings loaded".__FILE__."<br>";
 // include 'Botan.php'; //disabled
-
+//url api.telegram.org/bot281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ/setWebhook?url=https://vps7.exileed.com/titsbot/index.php?token=281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ
 error_reporting(E_ALL);
 date_default_timezone_set('Europe/Moscow');
 $access_token = '281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ';
@@ -27,7 +27,8 @@ $nice = $output['callback_query']['message']['caption'];
 $nice2 = $output['callback_query']['message']['chat']['title'];
 $nice3 = $output['callback_query']['message']['date'];
 $user_name_group = $output['message']['from']['username'];
-$message_id = ['callback_query']['message']['message_id'];
+$message_id1 = ['callback_query']['message']['message_id'];
+$message_id2 = ['callback_query']['message']['id'];
 $chat_id_in = $callback_query['message']['chat']['id'];
 $chat_id_in2 = $callback_query['from']['id'];
 $username_call = $callback_query['message']['chat']['username'];
