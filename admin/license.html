@@ -1,0 +1,254 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title>Личный кабинет клиента  Red Angels - Лицензии</title>
+    <!-- Favicon-->
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="plugins/bootstrap/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Waves Effect Css -->
+    <link href="plugins/node-waves/waves.css" rel="stylesheet" />
+
+    <!-- Animation Css -->
+    <link href="plugins/animate-css/animate.css" rel="stylesheet" />
+
+    <!-- Bootstrap Select Css -->
+    <link href="plugins/bootstrap-select/css/bootstrap-select.css" rel="stylesheet" />
+
+    <!-- Custom Css -->
+    <link href="css/style.css" rel="stylesheet">
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter41013519 = new Ya.Metrika({
+                    id:41013519,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/41013519" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+		      <button type="button" class="navbar-toggle" style="color: red" data-toggle="collapse" data-target="#navbar-collapse">
+		      </button>
+                <a class="navbar-brand" href="http://redangels.ru"><img src="images/logo.png"></a>
+			</div>
+            <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">                 
+            <li class=""><a href="dashboard.html">СВОДКА</a></li>
+            <li class=""><a href="reports.html">ОТЧЕТЫ</a></li> 
+            <li class="dropdown active">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="license.html#">УПРАВЛЕНИЕ <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="license.html">ЛИЦЕНЗИИ</a></li>
+                                <li><a href="users.html">ПОЛЬЗОВАТЕЛИ</a></li>
+							</ul>
+			</li>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+		    <li class=""><a href="profile.html"><span class="glyphicon glyphicon-user"></span> Иван Петров </span></a>
+		    <li class=""><a href="sign-in.html"> Выйти </span></a>
+			</li>
+
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- #Top Bar -->
+
+    <section>
+        <div class="container">
+
+            <div class="row clearfix">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2><span style="color: red">ЛИЦЕНЗИИ</span></h2>
+                        </div>
+					</div>	
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                    <div class="card">
+                        <div class="header">
+                                    <p>
+                                        <b>Управление лицензиями для бота:</b>
+                                    </p>
+                                    <select class="form-control show-tick" data-live-search="true">
+                                        <option>Бот 1. Описание</option>
+                                        <option>Бот 2. Описание</option>
+                                        <option>Бот 3. Описание</option>
+                                    </select>
+                        </div>
+                        <div class="body">
+							<div class="row clearfix">
+                            <ul class="nav nav-tabs tab-nav-right" role="tablist">
+                                <li role="presentation" class="active"><a href="license.html#license_active" data-toggle="tab">Лицензии</a></li>
+                                <li role="presentation"><a href="license.html#license_add" data-toggle="tab">Добавить</a></li>
+                                <li role="presentation"><a href="license.html#license_delete" data-toggle="tab">Удалить</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="license_active">
+								<div class="col-xs-12 col-sm-6 col-lg-4">
+                    <div class="info-box bg-pink hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">playlist_add_check</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">ВСЕГО ЛИЦЕНЗИЙ</div>
+                            <div class="number count-to" data-from="0" data-to="125" data-speed="15" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                    <div class="info-box bg-orange hover-expand-effect">
+                        <div class="icon">
+                            <i class="material-icons">person_add</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">АКТИВИРОВАНО</div>
+                            <div class="number count-to" data-from="0" data-to="95" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+							
+							
+                                </div>
+								</div>
+								<div role="tabpanel" class="tab-pane fade" id="license_add">
+								<div class="col-xs-12 col-sm-6 col-lg-4">
+									<form id="lic_add" method="POST">
+											<label class="form-label">Ввести номер</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">lock</i>
+												</span>
+												<div class="form-line">
+													<input type="text" class="form-control" name="license_num" placeholder="Номер" required>
+												</div>
+											</div>
+											<button class="btn btn-success waves-effect" type="submit">Добавить</button>
+											<button class="btn btn-default waves-effect m-l-20" type="reset">Отмена</button>
+							
+										
+									</form>	
+									<form class="m-t-50" id="lic_add_from_file" method="POST">
+											<label class="form-label">... или загрузить из файла</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">lock</i>
+												</span>
+												<div class="form-line">
+													<input type="file">
+												</div>
+											</div>
+											<button class="btn btn-success waves-effect" type="submit">Загрузить</button>
+											<button class="btn btn-default waves-effect m-l-20" type="reset">Отмена</button>
+							
+									</form>	
+								</div>
+								</div>
+											
+								<div role="tabpanel" class="tab-pane fade" id="license_delete">
+								<div class="col-xs-12 col-sm-6 col-lg-4">
+									<form id="lic_del" method="POST">
+											<label class="form-label">Ввести номер</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">lock</i>
+												</span>
+												<div class="form-line">
+													<input type="text" class="form-control" name="license_num" placeholder="Номер" required>
+												</div>
+											</div>
+											<button class="btn btn-danger waves-effect" type="submit">Удалить</button>
+											<button class="btn btn-default waves-effect m-l-20" type="reset">Отмена</button>
+							
+										
+									</form>	
+									<form class="m-t-50" id="lic_del_from_file" method="POST">
+											<label class="form-label">... или загрузить из файла</label>
+											<div class="input-group">
+												<span class="input-group-addon">
+													<i class="material-icons">lock</i>
+												</span>
+												<div class="form-line">
+													<input type="file">
+												</div>
+											</div>
+											<button class="btn btn-danger waves-effect" type="submit">Загрузить и удалить</button>
+											<button class="btn btn-default waves-effect m-l-20" type="reset">Отмена</button>
+							
+									</form>	
+								</div>
+										
+								</div>
+						</div>
+											
+										
+								</div>
+						</div>
+					</div>
+				</div>
+			</div>
+    </section>
+
+    <!-- Jquery Core Js -->
+    <script src="plugins/jquery/jquery.min.js"></script>
+
+    <!-- Bootstrap Core Js -->
+    <script src="plugins/bootstrap/js/bootstrap.js"></script>
+
+    <!-- Select Plugin Js -->
+    <script src="plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <!-- Jquery CountTo Plugin Js -->
+    <script src="plugins/jquery-countto/jquery.countTo.js"></script>
+
+
+    <!-- Waves Effect Plugin Js -->
+    <script src="plugins/node-waves/waves.js"></script>
+    <!-- Jquery Validation Plugin Css -->
+    <script src="http://studio.marcon24.ru/plugins/jquery-validation/jquery.validate.js"></script>
+
+
+    <!-- Input Mask Plugin Js -->
+    <script src="plugins/jquery-inputmask/jquery.inputmask.bundle.js"></script>
+
+    <!-- Custom Js -->
+    <script src="js/admin.js"></script>
+    <script src="http://studio.marcon24.ru/js/pages/forms/form-validation.js"></script>
+</body>
+
+</html>
