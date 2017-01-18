@@ -103,7 +103,7 @@ if ($data == '/titsup') {
         answerCallbackQuery($callback_id,"Ты забанен, хуесос {$user_name_group_call2}","false");
     }else{
         $voted = explode(" ", $nice);
-        $sql = "SELECT COUNT(vote_for) as cnt FROM titsup WHERE vote_for='{$voted[0]}' and user_id='{$user_id_group}';";
+        $sql = "SELECT COUNT(vote_for) as cnt FROM titsup WHERE vote_for='{$voted[0]}' and username='{$user_name_group_call2}';";
         $count = R::getAll($sql);
         if ($count[0]['cnt'] > 0) {
             answerCallbackQuery($callback_id,"Нельзя голосовать дважды","false");
@@ -136,7 +136,7 @@ if ($data == '/buttsup') {
         answerCallbackQuery($callback_id,"Ты забанен, хуесос {$user_name_group_call2}","false");
     }else{
         $voted = explode(" ", $nice);
-        $sql = "SELECT COUNT(vote_for) as cnt FROM buttsup WHERE vote_for='{$voted[0]}' and user_id='{$user_id_group}';";
+        $sql = "SELECT COUNT(vote_for) as cnt FROM buttsup WHERE vote_for='{$voted[0]}' and username='{$user_name_group_call2}';";
         $count = R::getAll($sql);
         if ($count[0]['cnt'] > 0) {
             answerCallbackQuery($callback_id,"Нельзя голосовать дважды","false");

@@ -27,7 +27,6 @@ $nice = $output['callback_query']['message']['caption'];
 $nice2 = $output['callback_query']['message']['chat']['title'];
 $nice3 = $output['callback_query']['message']['date'];
 $user_name_group = $output['message']['from']['username'];
-$bot_id = '281890161';
 $message_id = ['callback_query']['message']['message_id'];
 $chat_id_in = $callback_query['message']['chat']['id'];
 $chat_id_in2 = $callback_query['from']['id'];
