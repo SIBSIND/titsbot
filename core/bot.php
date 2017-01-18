@@ -213,3 +213,33 @@ if ($data == '/buttsup') {
         }
     }
 }
+
+  if($message == '/user_profile' || $message == '/user_profile@phphelperbot'){
+      $user = R::getRow("SELECT count(message)  as cnt FROM logs WHERE   author_id = ? ", [$user_id_group]);
+      $user2 = R::getRow('SELECT username,id,user_id,date_add,first_name FROM users WHERE user_id = ?', [$user_id_group]);
+      $butts = R::getRow("SELECT count(message) as cnt,author_id FROM logs WHERE message in ('/butts', '/butts@phphelperbot') AND author_id = ?", [$user_id_group]);
+      $tits = R::getRow("SELECT count(message) as cnt,author_id FROM logs WHERE message in ('/tits', '/tits@phphelperbot') AND author_id = ?", [$user_id_group]);
+      $gif = R::getRow("SELECT count(message) as cnt,author_id FROM logs WHERE message in ('/gif', '/gif@phphelperbot') AND author_id = ?", [$user_id_group]);
+      $bash = R::getRow("SELECT count(message) as cnt,author_id FROM logs WHERE message in ('/bash', '/bash@phphelperbot') AND author_id = ?", [$user_id_group]);
+      $sram = R::getRow("SELECT count(message) as cnt,author_id FROM logs WHERE message in ('/sram', '/sram@phphelperbot') AND author_id = ?", [$user_id_group]);
+
+      $inline_button1 = array("text"=>"В главное меню","callback_data" =>'/without_phone');
+      $inline_button2 = array("text"=>"Редактировать профиль","callback_data" =>'/edit_profile');
+      $inline_keyboard = [[$inline_button1, $inline_button2]];
+      $keyboard = array("inline_keyboard" => $inline_keyboard);
+      $replyMarkup = json_encode($keyboard);
+      sendMessage($chat_id,"
+Your personal data: \n
+<b>ID</b>: [{$user2["id"]}] / [{$user2["user_id"]}] \n <code>unique id in system / telegram</code>
+<b>Register</b>: [{$user2["date_add"]}]
+<b>username</b> : [@{$user2["username"]}]
+<b>nickname</b> : [{$user2["first_name"]}]
+<b>total requests</b>: [{$user['cnt']}]
+<b>butts</b>: [{$butts['cnt']}]
+<b>tits</b>: [{$tits['cnt']}]
+<b>gif</b>: [{$gif['cnt']}]
+<b>bash</b>: [{$bash['cnt']}]
+<b>sram</b>: [{$sram['cnt']}]
+
+",$replyMarkup);
+  }
