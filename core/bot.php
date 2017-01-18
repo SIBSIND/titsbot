@@ -103,7 +103,7 @@ if ($data == '/titsup') {
         answerCallbackQuery($callback_id,"Ты забанен, хуесос {$user_name_group_call2}","false");
     }else{
         $voted = explode(" ", $nice);
-        $sql = "SELECT COUNT(vote_for) as cnt FROM titsup WHERE vote_for='{$voted[0]}' and username='{$user_name_group_call2}';";
+        $sql = "SELECT COUNT(vote_for) as cnt FROM titsup WHERE vote_for='{$voted[0]}' and user_id='{$chat_id_in2}';";
         $count = R::getAll($sql);
         if ($count[0]['cnt'] > 0) {
             answerCallbackQuery($callback_id,"Нельзя голосовать дважды","false");
@@ -136,7 +136,7 @@ if ($data == '/buttsup') {
         answerCallbackQuery($callback_id,"Ты забанен, хуесос {$user_name_group_call2}","false");
     }else{
         $voted = explode(" ", $nice);
-        $sql = "SELECT COUNT(vote_for) as cnt FROM buttsup WHERE vote_for='{$voted[0]}' and username='{$user_name_group_call2}';";
+        $sql = "SELECT COUNT(vote_for) as cnt FROM buttsup WHERE vote_for='{$voted[0]}' and user_id='{$chat_id_in2}';";
         $count = R::getAll($sql);
         if ($count[0]['cnt'] > 0) {
             answerCallbackQuery($callback_id,"Нельзя голосовать дважды","false");
@@ -151,7 +151,7 @@ if ($data == '/buttsup') {
             $id = R::store( $vote );
             $count_rand = R::getAll("SELECT COUNT(file_id) as cnt  FROM butts");
             $rand = mt_rand(0, $count_rand[0]['cnt']);
-            $count = R::getAll("SELECT COUNT(vote_for) as cnt  FROM titsup WHERE vote_for={$rand};");
+            $count = R::getAll("SELECT COUNT(vote_for) as cnt  FROM buttsup WHERE vote_for={$rand};");
             $butts = R::getRow("SELECT * FROM butts WHERE id={$rand}");
             $inline_button1 = array("text" => "Rate us ⭐️", "url" => "telegram.me/storebot?start=phphelperbot");
             $inline_button2 = array("text"=>"❤️ {$count[0]['cnt']}","callback_data" =>'/buttsup');
