@@ -115,6 +115,15 @@ if ($data == '/titsup') {
             $vote->vote_for = $voted[0];
             $vote->date_add = date('Y-m-d H:i:s');
             $id = R::store( $vote );
+            $rand = mt_rand(0, 2721);
+            $count = R::getAll("SELECT COUNT(vote_for) as cnt  FROM titsup WHERE vote_for={$rand};");
+            $tits = R::getAll("SELECT * FROM tits");
+            $inline_button1 = array("text" => "Rate us ⭐️", "url" => "telegram.me/storebot?start=phphelperbot");
+            $inline_button2 = array("text"=>"❤️ {$count[0]['cnt']}","callback_data" =>'/titsup');
+            $inline_keyboard = [[$inline_button1, $inline_button2]];
+            $keyboard = array("inline_keyboard" => $inline_keyboard);
+            $replyMarkup = json_encode($keyboard);
+            sendPhoto($chat_id_in, $tits[$rand]["file_id"], $msgid, "{$tits[$rand]["id"]}", $replyMarkup);
         }
     }
 }
@@ -138,6 +147,15 @@ if ($data == '/buttsup') {
             $vote->vote_for = $voted[0];
             $vote->date_add = date('Y-m-d H:i:s');
             $id = R::store( $vote );
+            $rand = mt_rand(0, 1886);
+            $butts = R::getAll("SELECT * FROM butts");
+            $count = R::getAll("SELECT COUNT(vote_for) as cnt  FROM buttsup WHERE vote_for={$rand};");
+            $inline_button1 = array("text" => "Rate us ⭐️", "url" => "telegram.me/storebot?start=phphelperbot");
+            $inline_button2 = array("text"=>"❤️ {$count[0]['cnt']}","callback_data" =>'/buttsup');
+            $inline_keyboard = [[$inline_button1, $inline_button2]];
+            $keyboard = array("inline_keyboard" => $inline_keyboard);
+            $replyMarkup = json_encode($keyboard);
+            sendPhoto($chat_id_in, $butts[$rand]["file_id"], $msgid, "{$butts[$rand]["id"]}", $replyMarkup);
         }
     }
 }
