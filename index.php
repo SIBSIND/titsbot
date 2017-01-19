@@ -17,5 +17,6 @@ if ($ban) {
  	За разбаном пишите админу @{$ban->banned_by}",$msgid,$replyMarkup);
     }else{
 require 'core/bot.php';
+require 'core/rating.php';
 require 'core/autoload.php';
     }
