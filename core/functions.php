@@ -16,7 +16,7 @@ function sendKeyboard($chat_id, $message, $reply) {
  * @param $replyMarkup
  */
 function sendMessage($chat_id, $message, $msgid, $replyMarkup) {
-  file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id .'&parse_mode=HTML&disable_web_page_preview=true'.'&reply_to_message_id='.$msgid. '&text=' . urlencode($message).'&reply_markup=' . $replyMarkup);
+  file_get_contents($GLOBALS['api'] . '/sendMessage?chat_id=' . $chat_id .'&parse_mode=HTML&disable_web_page_preview=false'.'&reply_to_message_id='.$msgid. '&text=' . urlencode($message).'&reply_markup=' . $replyMarkup);
 }
 
 /**
