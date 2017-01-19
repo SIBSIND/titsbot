@@ -6,7 +6,7 @@
  * Time: 8:25
  */
 
-
+//aya
 if ($data == '/titsup') {
     $ban_users = R::getCol('SELECT user_name FROM banlist');
     if(in_array($user_name_group_call2, $ban_users)){
