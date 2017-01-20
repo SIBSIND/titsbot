@@ -26,6 +26,7 @@ if ($data == '/titsup') {
             $vote->vote_for = $voted[0];
             $vote->date_add = date('Y-m-d H:i:s');
             $id = R::store( $vote );
+            //refresh_tits($chat_id_in,$message_id);
             $count = R::getAll("SELECT COUNT(vote_for) as cnt  FROM titsup WHERE vote_for='{$voted[0]}';");
             $inline_button1 = ['text'=>"👍  {$count[0]['cnt']}",'callback_data'=>'/titsup',];
             $inline_button2 = ['text'=>'Rate us ⭐️','url'=>'telegram.me/storebot?start=phphelperbot'];
@@ -57,9 +58,9 @@ if ($data == '/buttsup') {
             $vote->vote_for = $voted[0];
             $vote->date_add = date('Y-m-d H:i:s');
             $id = R::store( $vote );
-
+            //refresh_butts($chat_id_in,$message_id);
             $count = R::getAll("SELECT COUNT(vote_for) as cnt  FROM buttsup WHERE vote_for='{$voted[0]}';");
-
+            //refresh($chat_id_in,$message_id);
             $inline_button1 = ['text'=>"👍  {$count[0]['cnt']}",'callback_data'=>'/buttsup',];
             $inline_button2 = ['text'=>'Rate us ⭐️','url'=>'telegram.me/storebot?start=phphelperbot'];
             $inline_keyboard = [[$inline_button1],[$inline_button2]];

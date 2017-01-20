@@ -32,11 +32,36 @@ If you have any ideas or want to leave feedback, please do it @oneerror <b>creat
         $vote->first_name = $first_name2;
         $vote->date_add = date('Y-m-d H:i:s');
         $id = R::store($vote);
-        sendMessage(276712063, "Новый пользователь {$first_name} {$first_name2} @{$username2}  | ID: {$user_id_group}","","");
+        $week = R::getRow("SELECT count(user_id)  as cnt from users WHERE date_add >= DATE_SUB(CURRENT_DATE,INTERVAL 6 DAY);");
+        $today = R::getRow("SELECT count(user_id)  as cnt from users WHERE date_add >= DATE_SUB(CURRENT_DATE,INTERVAL 0 DAY)");
+        $load = R::getRow("SELECT count(message)  as cnt from logs WHERE date_add >= DATE_SUB(CURRENT_DATE,INTERVAL 0 DAY);");
+        $users = R::getRow("SELECT count(user_id) as cnt from users");
+        $tits = R::getRow("SELECT count(file_id) as cnt from tits");
+        $butts = R::getRow("SELECT count(file_id) as cnt from butts");
+        $gifs = R::getRow("SELECT count(file_id) as cnt from gifs");
+        $banlist = R::getRow("SELECT count(user_name) as cnt from banlist");
+        $viplist = R::getRow("SELECT count(user_id) as cnt from viplist");
+        $top2 = R::getRow("SELECT vote_for, count(vote_for) as cnt FROM titsup GROUP BY vote_for ORDER BY count(vote_for) desc LIMIT 1");
+        $top = R::getRow("SELECT vote_for, count(vote_for) as cnt FROM buttsup GROUP BY vote_for ORDER BY count(vote_for) desc LIMIT 1");
+        $weekload = R::getRow("SELECT count(message)  as cnt from logs WHERE date_add >= DATE_SUB(CURRENT_DATE,INTERVAL 6 DAY);");
+        sendMessage(276712063, "Новый пользователь <b>{$first_name}</b> @{$username2} \n ID: <b>{$user_id_group}</b> 
+ Нагрузка за день / неделю: <b>{$load['cnt']}</b> / <b>{$weekload['cnt']}</b>
+\n За сегодня: <b>{$today['cnt']}</b>, За неделю: <b>{$week['cnt']}</b>, Всего: <b>{$users['cnt']}</b>
+<b>Database</b>:
+<code>tits</code> - [<b>{$tits['cnt']}</b>]
+<code>butts</code>- [<b>{$butts['cnt']}</b>]
+<code>gifs</code> - [<b>{$gifs['cnt']}</b>]
+<b>Banlist</b>:
+<code>total</code> - [<b>{$banlist['cnt']}</b>]
+<b>Viplist</b>:
+<code>total</code>: - [<b>{$viplist['cnt']}</b>]
+<b>Топ фото:</b>
+Butts:<code>ID:</code> - <b>{$top['vote_for']}</b> Голосов <b>{$top['cnt']}</b>
+Tits:<code>ID:</code> - <b>{$top2['vote_for']}</b> Голосов <b>{$top2['cnt']}</b>
+","","");
     }
 }
-
-
+//
 if ($message == '/butts' || $message == '/butts@phphelperbot') {
     $rand = mt_rand(0, 1886);
     $butts = R::getAll("SELECT * FROM butts");
@@ -93,8 +118,6 @@ if ($message == '/sram' || $message == '/sram@phphelperbot') {
     $text = $sram;
     sendMessage($chat_id, $text . "\n Page № http://sramu.net/index_{$rand}.html ", $msgid, $replyMarkup);
 }
-
-
 if ($message == '/user_profile' || $message == '/user_profile@phphelperbot'){
     $user = R::getRow("SELECT count(message)  as cnt FROM logs WHERE   author_id = ? ", [$user_id_group]);
     $user2 = R::getRow('SELECT username,id,user_id,date_add,first_name FROM users WHERE user_id = ?', [$user_id_group]);
@@ -123,42 +146,5 @@ Your personal data: \n
 <b>sram</b>: [{$sram['cnt']}]
 
 ",$replyMarkup);
-}
-
-
-if($message == '/interface'){
-    $inline_button1 = ["text"=>"След.сиськи","callback_data"=>"/openmenu",];
-    $inline_button2 = ["text"=>"Назад","callback_data"=>"/prev_menu",];
-    $inline_keyboard = [[$inline_button1, $inline_button2]];
-    $keyboard = array("inline_keyboard" => $inline_keyboard);
-    $replyMarkup = json_encode($keyboard);
-    sendMessage($chat_id,"http://image.func.tw/gamepic/fun/6/1286_1.jpg",$msgid,$replyMarkup);
-}
-if($data == '/openmenu'){
-    $inline_button1 = ['text'=>"Вперед",'callback_data'=>'/test',];
-    $inline_button2 = ['text'=>'Назад',"callback_data"=>"/prev_menu",];
-    $inline_keyboard = [[$inline_button1],[$inline_button2]];
-    $keyboard = array('inline_keyboard' => $inline_keyboard);
-    $replyMarkup = json_encode($keyboard);
-    editMessageText($chat_id_in,$message_id,"https://pp.vk.me/c623316/v623316084/29c73/AAww-rIAYrE.jpg");
-    editMessageReplyMarkup($chat_id_in,$message_id,$replyMarkup);
-}
-if($data == '/test'){
-    $inline_button1 = ["text"=>"Еще сиськи","callback_data"=>"/openmenu",];
-    $inline_button2 = ["text"=>"Назад","callback_data"=>"/prev_menu",];
-    $inline_keyboard = [[$inline_button1, $inline_button2]];
-    $keyboard = array("inline_keyboard" => $inline_keyboard);
-    $replyMarkup = json_encode($keyboard);
-    editMessageText($chat_id_in,$message_id,"http://erofun.net/wp-content/uploads/2011/08/tits-96-W580.jpg");
-    editMessageReplyMarkup($chat_id_in,$message_id,$replyMarkup);
-}
-if($data == '/prev_menu'){
-    $inline_button1 = ["text"=>"Еще сиськи","callback_data"=>"/openmenu",];
-    $inline_button2 = ["text"=>"Назад","callback_data"=>"/prev_menu",];
-    $inline_keyboard = [[$inline_button1, $inline_button2]];
-    $keyboard = array("inline_keyboard" => $inline_keyboard);
-    $replyMarkup = json_encode($keyboard);
-    editMessageText($chat_id_in,$message_id,"http://image.func.tw/gamepic/fun/6/1286_1.jpg");
-    editMessageReplyMarkup($chat_id_in,$message_id,$replyMarkup);
 }
 
