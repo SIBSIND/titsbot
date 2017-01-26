@@ -50,6 +50,7 @@ $bot_url    = "https://api.telegram.org/".$token;
 $url        = $bot_url . "/sendPhoto?chat_id=276712063";
 $post_fields = array(
 	'photo'   => new CURLFile(realpath("/var/www/html/images/".$file)),
+    //'photo' => "@$path")),
 );
 
 $ch = curl_init(); 

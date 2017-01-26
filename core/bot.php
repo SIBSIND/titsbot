@@ -86,7 +86,7 @@ if ($message == '/tits' || $message == '/tits@phphelperbot') {
     sendPhoto($chat_id, $tits["file_id"], $msgid, "{$tits["id"]}", $replyMarkup);
 }
 if ($message == '/gif' || $message == '/gif@phphelperbot') {
-    $rand = mt_rand(0, 46);
+    $rand = mt_rand(0, 82);
     $butts = R::getAll("SELECT * FROM gifs");
     $inline_button1 = array("text" => "Rate us ⭐️", "url" => "telegram.me/storebot?start=phphelperbot");
     $inline_button2 = array("text" => "Share", "switch_inline_query" => "Лучший сиськобот ^^,");
@@ -148,3 +148,8 @@ Your personal data: \n
 ",$replyMarkup);
 }
 
+if($message =='/video' || $message == '/video@phphelperbot'){
+    $rand = mt_rand(0, 2);
+    $video = R::getRow("SELECT * FROM video WHERE id={$rand}");
+    sendVideo($chat_id, $video["file_id"], $msgid, "{$tits["id"]}", $replyMarkup);
+}

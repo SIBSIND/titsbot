@@ -35,6 +35,10 @@
 /out/
 /.idea/
 idea/
+/sql/
+sql/
+titsbot.sql
+/titsbot.sql/
 
 # mpeltonen/sbt-idea plugin
 .idea_modules/

@@ -16,4 +16,18 @@ $keyboard=array("inline_keyboard"=>$inline_keyboard);
 $replyMarkup = json_encode($keyboard);
 sendMessage($chat_id, "Банлист: \n $list", $msgid, $replyMarkup);
 }
+
+
+$vipsa = R::getAll('SELECT *  FROM viplist');
+if (preg_match_all("/(?<![\w\d])(viplist)(?![\w\d])/uim", $message_preg, $mathes)) {
+    json_decode($vips);
+
+    $list = "";
+    foreach ($vipsa as $vip) {
+
+        $list .= "@{$vip["user_name"]} [<b>{$vip["first_name"]}</b>] \n ID: <b>{$vip["user_id"]}</b> \n Role @{$vip["role"]} \n Дата {$vip["date_add"]} \n Добавил <b>{$vip["add_by"]}</b> \n ======================= \n";
+
+    }
+    sendMessage($chat_id, "Виплист: \n $list", $msgid, "");
+}
 ?>

@@ -6,14 +6,12 @@
  * Time: 18:04
  */
 
-//if($message == '2bd'){
-//    $butts_id = [];
-//
-//    foreach($butts_id as $butts){
-//        $Query = "INSERT INTO tits(`file_id`) VALUES ('{$butts}')";
-//        R::exec( $Query );
-//        //sendMessage($chat_id,$butts,$msgid,"");
-//        //sendMessage($chat_id, $Query,$msgid,"");
-//
-//    }
-//}
+if($message == '2bd'){
+    $video = [
+    ];
+
+    foreach($video as $singlevideo){
+        $Query = "INSERT INTO tits(`file_id`) VALUES ('{$singlevideo}')";
+        R::exec( $Query );
+    }
+}
