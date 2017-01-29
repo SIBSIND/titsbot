@@ -51,9 +51,9 @@ If you have any ideas or want to leave feedback, please do it @oneerror <b>creat
 <code>tits</code> - [<b>{$tits['cnt']}</b>]
 <code>butts</code>- [<b>{$butts['cnt']}</b>]
 <code>gifs</code> - [<b>{$gifs['cnt']}</b>]
-<b>Banlist</b>:
+<b>Забаненные</b>:
 <code>total</code> - [<b>{$banlist['cnt']}</b>]
-<b>Viplist</b>:
+<b>Випы</b>:
 <code>total</code>: - [<b>{$viplist['cnt']}</b>]
 <b>Топ фото:</b>
 Butts:<code>ID:</code> - <b>{$top['vote_for']}</b> Голосов <b>{$top['cnt']}</b>
@@ -61,7 +61,6 @@ Tits:<code>ID:</code> - <b>{$top2['vote_for']}</b> Голосов <b>{$top2['cnt
 ","","");
     }
 }
-//
 if ($message == '/butts' || $message == '/butts@phphelperbot') {
     $rand = mt_rand(0, 1886);
     $butts = R::getAll("SELECT * FROM butts");
@@ -147,8 +146,7 @@ Your personal data: \n
 
 ",$replyMarkup);
 }
-
-if($message =='/video' || $message == '/video@phphelperbot'){
+if ($message == '/video' || $message == '/video@phphelperbot'){
     $rand = mt_rand(0, 2);
     $video = R::getRow("SELECT * FROM video WHERE id={$rand}");
     sendVideo($chat_id, $video["file_id"], $msgid, "{$tits["id"]}", $replyMarkup);
