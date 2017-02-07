@@ -5,7 +5,7 @@
  * Date: 08.01.17
  * Time: 18:09
  */
-
+//hm
 if ($message == '/start') {
     $inline_button1 = array("text" => "Rate us 💋", "url" => "telegram.me/storebot?start=phphelperbot");
     $inline_button2 = array("text" => "Share", "switch_inline_query" => "Best TitsBot");
