@@ -118,6 +118,7 @@ if ($message == '/sram' || $message == '/sram@phphelperbot') {
     sendMessage($chat_id, $text . "\n Page № http://sramu.net/index_{$rand}.html ", $msgid, $replyMarkup);
 }
 if ($message == '/user_profile' || $message == '/user_profile@phphelperbot'){
+    $start = microtime(true);
     $user = R::getRow("SELECT count(message)  as cnt FROM logs WHERE   author_id = ? ", [$user_id_group]);
     $user2 = R::getRow('SELECT username,id,user_id,date_add,first_name FROM users WHERE user_id = ?', [$user_id_group]);
     $butts = R::getRow("SELECT count(message) as cnt,author_id FROM logs WHERE message in ('/butts', '/butts@phphelperbot') AND author_id = ?", [$user_id_group]);
@@ -143,11 +144,13 @@ Your personal data: \n
 <b>gif</b>: [{$gif['cnt']}]
 <b>bash</b>: [{$bash['cnt']}]
 <b>sram</b>: [{$sram['cnt']}]
-
-",$replyMarkup);
+Время выполнения скрипта: <b>".(microtime(true) - $start)."</b> сек"
+,$replyMarkup);
 }
 if ($message == '/video' || $message == '/video@phphelperbot'){
     $rand = mt_rand(0, 2);
     $video = R::getRow("SELECT * FROM video WHERE id={$rand}");
     sendVideo($chat_id, $video["file_id"], $msgid, "{$tits["id"]}", $replyMarkup);
 }
+
+

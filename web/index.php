@@ -1,150 +1,94 @@
-<?php
-echo "<b>Результат работы бота</b>: ↓ <br><hr>";
-ini_set('default_charset', 'UTF-8'); // кодировка
-// ini_set('display_errors', '1');
-$token = "bot281890161:AAFV11sF1GhyZ4NAREsFK3AjoFYuA5FmOKQ";
-echo "Получить file_id  для бота<br>";
-// echo __DIR__.'<br>';
-// echo __FILE__.'<br>';
-echo "<hr>";
-?>
-<form method="post">
-	<p><select size="3" multiple name="method">
-    <option value="sendPhoto">sendPhoto</option>
-    <option selected value="sendDocument">sendDocument</option>
-    <option value="sendVideo">sendVideo</option>
-   </select>
-   	<select size="3" multiple name="value">
-    <option value="photo">photo</option>
-    <option selected value="document">document</option>
-    <option value="video">video</option>
-   </select>
-   	<input type=submit name=button value=send></p>
+
+<html lang="en" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="css/reset.css"> <!-- CSS reset -->
+  <link rel="stylesheet" href="css/style.css"> <!-- Resource style -->
+  <script src="js/modernizr.js"></script> <!-- Modernizr -->
+  
+  <title>Send Message via Telegram</title>
+</head>
+<body>
+  <form method=post class="cd-form floating-labels" action="send.php">
+    <fieldset>
+     <legend>Форма обратной связи...</legend>
+     <div class="error-message">
+      <p>Введите email адрес</p>
+    </div>
+
+    <div class="icon">
+      <label class="cd-label" for="cd-name">Имя</label>
+      <input class="user" type="text" name="cd-name" id="cd-name" required>
+    </div> 
+
+
+    <div>
+
+      <p class="cd-select icon">
+       <select class="budget" name="select-choice" id="select-choice">
+        <option  hidden value="Тема не выбрана">Тема сообщения</option>
+        <option value="Срочно">Срочно</option>
+        <option value="❤️ Dota ❤️">Дота</option>
+        <option value="Попиздеть">Попиздеть</option>
+      </select>
+    </p>
+  </div> 
+
+  <div class="icon">
+    <label class="cd-label" for="cd-email">Email</label>
+    <input class="email error" type="email" name="cd-email" id="cd-email" required>
+  </div>
+</fieldset>
+
+<fieldset>
+  <legend>Ваше сообщение</legend>
+  <div>
+    <h4>Отправить в</h4>
+
+    <ul class="cd-form-list">
+      <li>
+        <input type="checkbox" id="telegram">
+        <label for="cd-checkbox-1"><img src="https://cdn3.iconfinder.com/data/icons/social-media-chat-1/512/Telegram-16.png"></label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="vk">
+        <label for="cd-checkbox-2"><img src="https://cdn4.iconfinder.com/data/icons/social-network-icons-color-2/1024/vk-16.png"></label>
+      </li>
+
+      <li>
+        <input type="checkbox" id="skype">
+        <label for="cd-checkbox-3"><img src="https://cdn0.iconfinder.com/data/icons/social-15/200/skype-16.png"></label>
+      </li>
+      <li>
+        <input type="checkbox" id="phone">
+        <label for="cd-checkbox-3"><img src="https://cdn2.iconfinder.com/data/icons/circle-icons-1/64/phone-16.png"></label>
+      </li>
+    </ul>
+  </div>
+  <div class="icon">
+    <label class="cd-label" for="cd-textarea">Текст сообщения</label>
+    <textarea class="message" name="cd-textarea" id="cd-textarea" required></textarea>
+  </div>
+
+  <div>
+    <?php 
+    $botToken = "281890161:AAEmjZSV_5_-P9qwwfJCEMcjX66qPdTt6NM";
+    $url = "https://api.telegram.org/bot".$botToken;
+    ?>
+    <form action ="<?php echo $url.'/sendPhoto' ?>" method=post enctype="multipart/form-data"
+      <input type="text" hidden name="chat_id" value="276712063" />
+      <input type="file" name="photo" />
+    </form>
+    <input type="submit" value="Отправить">
+  </div>
+</fieldset>
 </form>
-<form method="post">
-<p><select size="3" multiple name="groups_id">
-    <option value="276712063">@oneerror</option>
-    <option selected value="-1001080942465">@tits_and_flood</option>
-    <option value="276712063">@phpgeeks</option></p>
-    <textarea rows="3" cols="45" name="message">[<?=date('H:i:s')?>] <b>Updated:</b> add some</textarea>
-<input type=submit name=message_send value="Send">
-</form>
-<?php
-if ($_POST['message_send']) {
-	file_get_contents("https://api.telegram.org/bot281890161:AAFV11sF1GhyZ4NAREsFK3AjoFYuA5FmOKQ/sendMessage?chat_id=".$_POST['groups_id']."&text=".$_POST['message']."&parse_mode=HTML");
-}
-if ($_POST['method'] == 'sendPhoto' && $_POST['value'] == 'photo') {
-	$dir    = '/var/www/html/images/';
-$files1 = scandir($dir);
-function Scan($code){
-	echo "<pre>";
-	print_r($code);
-	echo "</pre>";
-}
-// Scan($files1);
-echo "<hr>";
-if ($_POST['button']) {
-	foreach ($files1 as $file) {
-// echo "result file_id from array<br>";
-$bot_url    = "https://api.telegram.org/".$token;
-$url        = $bot_url . "/sendPhoto?chat_id=276712063";
-$post_fields = array(
-	'photo'   => new CURLFile(realpath("/var/www/html/images/".$file)),
-);
-
-$ch = curl_init(); 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type:multipart/form-data"
-));
-curl_setopt($ch, CURLOPT_URL, $url); 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields); 
- $output = curl_exec($ch);
- $output = json_decode($output, true);
-echo "\""."{$output['result']['photo'][0]['file_id']}"."\",".'<br>';
-}
-}
-}
-if ($_POST['method'] == 'sendDocument' && $_POST['value'] == 'document') {
-	$dir    = '/var/www/html/document/';
-$files1 = scandir($dir);
-function Scan($code){
-	echo "<pre>";
-	print_r($code);
-	echo "</pre>";
-}
-// Scan($files1);
-echo "<hr>";
-if ($_POST['button']) {
-	foreach ($files1 as $file) {
-// echo "result file_id from array<br>";
-$bot_url    = "https://api.telegram.org/".$token;
-$url        = $bot_url . "/sendDocument?chat_id=276712063";
-$post_fields = array(
-	'document'   => new CURLFile(realpath("/var/www/html/document/".$file)),
-);
-
-$ch = curl_init(); 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type:multipart/form-data"
-));
-curl_setopt($ch, CURLOPT_URL, $url); 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields); 
- $output = curl_exec($ch);
- // var_dump($output);
- $output = json_decode($output, true);
-echo "\""."{$output['result']['document']['file_id']}"."\",".'<br>';
-}
-}
-}
-if ($_POST['method'] == 'sendVideo' && $_POST['value'] == 'video') {
-	$dir    = '/var/www/html/video/';
-$files1 = scandir($dir);
-function Scan($code){
-	echo "<pre>";
-	print_r($code);
-	echo "</pre>";
-}
-// Scan($files1);
-echo "<hr>";
-if ($_POST['button']) {
-	foreach ($files1 as $file) {
-// echo "result file_id from array<br>";
-$bot_url    = "https://api.telegram.org/".$token;
-$url        = $bot_url . "/sendVideo?chat_id=276712063";
-$post_fields = array(
-	'video'   => new CURLFile(realpath("/var/www/html/video/".$file)),
-);
-
-$ch = curl_init(); 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type:multipart/form-data"
-));
-curl_setopt($ch, CURLOPT_URL, $url); 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields); 
- $output = curl_exec($ch);
- // var_dump($output);
- $output = json_decode($output, true);
-echo "\","."{$output['result']['video']['file_id']}"."\",".'<br>';
-}
-}
-}
-// var_dump($_POST);
-echo "В папке web/images : <b>".count(scandir('/var/www/html/images/'))."</b> файлов <br>";
-echo "В папке web/document : <b>".count(scandir('/var/www/html/document/'))."</b> файлов <br>";
-echo "В папке web/video : <b>".count(scandir('/var/www/html/video/'))."</b> файлов <br>";
-// $dir = "images/";
-// $exclude = array( ".","..","error_log","_notes" );
-// if (is_dir($dir)) {
-//     $files = scandir($dir);
-//     foreach($files as $file){
-//         if(!in_array($file,$exclude)){
-//             echo '<details><img src="' . $dir . $file . '" /></details>';
-//         }
-//     }
-// }
-echo "<hr>";
-?>
-
+<script src="js/jquery-2.1.1.js"></script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+</body>
+</html>

@@ -76,6 +76,3 @@ class ACRCloud {
         return($response);
     }
 }
-$acr = new ACRCloud("28d6d91596e6835384111be2b719dc06", "FJfAxOME2M51UamcXlBs2bv7ApF16lnrakIWvbTy");
-$data = $acr->identify("1.mp3");
-print_r($data);
