@@ -3,8 +3,6 @@
 > Simple answering machine via PHP.
 
 Require SSL on server.
-[![phpGeeks](https://yasb.exileed.com/api/v1/chat/1001047863278/count.svg
-)](https://t.me/phpgeeks)
 
 ## Links
 - [Telegram Bot API -  PHP SDK](https://github.com/irazasyed/telegram-bot-sdk) - The (Unofficial) Telegram Bot API PHP SDK. Lets you develop Telegram Bots easily! Supports Laravel out of the box.
