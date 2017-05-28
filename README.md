@@ -1,6 +1,4 @@
-<img src="https://github.com/matiassingers/awesome-readme/blob/master/icon.png?raw=true" align="right" />
-# phptelegrambot [![Get it](https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg)](https://github.com/kefzce/phptelegrambot)
-> Simple answering machine via PHP.
+## TitsBot [![Build Status](https://api.travis-ci.org/kefzce/bot-class.svg?branch=master)](https://travis-ci.org/kefzce/bot-class) [![MIT Licence](https://badges.frapsoft.com/os/mit/mit.svg?v=103)](https://opensource.org/licenses/mit-license.php) [![PHP version](https://camo.githubusercontent.com/872e8e7b7893bb2335c27be1f7cac90227dfd255/68747470733a2f2f62616467652e667572792e696f2f67682f626f656e6e656d616e6e2532466261646765732e737667)](https://badge.fury.io/ph/0.1.svg)
 
 Require SSL on server.
 
