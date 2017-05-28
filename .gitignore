@@ -39,7 +39,7 @@ idea/
 sql/
 titsbot.sql
 /titsbot.sql/
-
+/test/
 # mpeltonen/sbt-idea plugin
 .idea_modules/
 

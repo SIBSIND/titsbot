@@ -1,12 +1,17 @@
-<?php
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of my implementation Bot SDK for Telegram via PHP.
+ */
+
 echo "Settings loaded".__FILE__."<br>";
 // include 'Botan.php'; //disabled
 //url api.telegram.org/bot281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ/setWebhook?url=https://vps7.exileed.com/titsbot/index.php?token=281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ
 error_reporting(E_ALL);
 date_default_timezone_set('Europe/Moscow');
 $access_token = '281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ';
-$api = 'https://api.telegram.org/bot' . $access_token;
-$output = json_decode(file_get_contents('php://input'), TRUE);
+$api = 'https://api.telegram.org/bot'.$access_token;
+$output = json_decode(file_get_contents('php://input'), true);
 $chat_id = $output['message']['chat']['id'];
 $first_name = $output['message']['chat']['first_name'];
 $msgid = $output['message']['message_id'];
@@ -19,7 +24,7 @@ $message_preg = $output['message']['text'];
 $sticker = $output['message']['sticker'];
 $photo = $output['message']['file_id'];
 $callback_id = $output['callback_query']['id'];
-$username =$output['message']['chat']['username'];
+$username = $output['message']['chat']['username'];
 $user_id_group = $output['message']['from']['id'];
 $user_first_name_group = $output['message']['from']['first_name'];
 $user_first_name_group1 = $output['callback_query']['from']['first_name'];
@@ -38,4 +43,3 @@ $user_name_group_call2 = $callback_query['from']['username'];
 $username2 = $output['message']['from']['username'];
 $first_name2 = $output['message']['from']['first_name'];
 $chat_username = $output['message']['chat']['username'];
-

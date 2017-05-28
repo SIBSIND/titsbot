@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 echo "<b>Результат работы бота</b>: ↓ <br><hr>";
 ini_set('default_charset', 'UTF-8'); // кодировка
 $token = "bot281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ";
@@ -16,57 +16,60 @@ echo "2Получить file_id c фотографий в папке /web/images
 // echp "<hr>";
 echo "В папке web/images :<b>".count(scandir('/app/web/images/'))."</b> файлов";
 $dir = "images/";
-$exclude = array( ".","..","error_log","_notes" );
+$exclude = [ ".", "..", "error_log", "_notes" ];
 if (is_dir($dir)) {
     $files = scandir($dir);
-    foreach($files as $file){
-        if(!in_array($file,$exclude)){
-            echo '<details><img src="' . $dir . $file . '" /></details>';
+    foreach ($files as $file) {
+        if (!in_array($file, $exclude)) {
+            echo '<details><img src="'.$dir.$file.'" /></details>';
         }
     }
 }
-$dir    = '/app/web/images/';
+$dir = '/app/web/images/';
 $files1 = scandir($dir);
-function Scan($code){
-	echo "<pre>";
-	print_r($code);
-	echo "</pre>";
+function Scan($code)
+{
+    echo "<pre>";
+    print_r($code);
+    echo "</pre>";
 }
 // Scan($files1);
 echo "<hr>";
 if ($_POST['submit']) {
-	foreach ($files1 as $file) {
-// echo "result file_id from array<br>";
-$bot_url    = "https://api.telegram.org/".$token;
-$url        = $bot_url . "/sendPhoto?chat_id=276712063";
-$post_fields = array(
-	'photo'   => new CURLFile(realpath("/app/web/images/".$file)),
-);
+    foreach ($files1 as $file) {
+        // echo "result file_id from array<br>";
+$bot_url = "https://api.telegram.org/".$token;
+        $url = $bot_url."/sendPhoto?chat_id=276712063";
+        $post_fields = [
+    'photo' => new CURLFile(realpath("/app/web/images/".$file)),
+];
 
-$ch = curl_init(); 
-curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-    "Content-Type:multipart/form-data"
-));
-curl_setopt($ch, CURLOPT_URL, $url); 
-curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1); 
-curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields); 
- $output = curl_exec($ch);
- echo $output['result']['photo'][0]['file_id'].'<br>';
-  var_dump($output);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_HTTPHEADER, [
+    "Content-Type:multipart/form-data",
+]);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $post_fields);
+        $output = curl_exec($ch);
+        echo $output['result']['photo'][0]['file_id'].'<br>';
+        var_dump($output);
   // $output = json_decode($output, true);
  // foreach ($output['result'] as $key => $value) {
  // 	echo $value[0]['file_id'].'<br>';
  // }
-}
+    }
 }
 if ($_POST['refresh']) {
-	header("Location: /web/images.php");
+    header("Location: /web/images.php");
 }
 if ($_POST['delete']) {
-if (file_exists('./images'))
-foreach (glob('./images/*') as $file)
-unlink($file);
-header("Location: /web/images.php");
+    if (file_exists('./images')) {
+        foreach (glob('./images/*') as $file) {
+            unlink($file);
+        }
+    }
+    header("Location: /web/images.php");
 }
 echo "<hr>";
 ?>

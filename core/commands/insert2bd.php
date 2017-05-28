@@ -1,17 +1,15 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: systemfailure
- * Date: 08.01.17
- * Time: 18:04
+<?php declare(strict_types=1);
+
+/*
+ * This file is part of my implementation Bot SDK for Telegram via PHP.
  */
 
-if($message == '2bd'){
+if ($message === '2bd') {
     $video = [
     ];
 
-    foreach($video as $singlevideo){
+    foreach ($video as $singlevideo) {
         $Query = "INSERT INTO tits(`file_id`) VALUES ('{$singlevideo}')";
-        R::exec( $Query );
+        R::exec($Query);
     }
 }
