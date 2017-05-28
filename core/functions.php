@@ -104,10 +104,11 @@ function kickchatmember($chat_id, $user_id)
  * @param $video_id
  * @param $msgid
  * @param $caption
+ * @param $replyMarkup
  */
-function sendVideo($chat_id, $video_id, $msgid, $caption)
+function sendVideo($chat_id, $video_id, $msgid, $caption,$replyMarkup)
 {
-    file_get_contents($GLOBALS['api'].'/sendVideo?chat_id='.$chat_id.'&reply_to_message_id='.$msgid.'&video='.$video_id.'&caption='.$caption);
+    file_get_contents($GLOBALS['api'].'/sendVideo?chat_id='.$chat_id.'&reply_to_message_id='.$msgid.'&video='.$video_id.'&caption='.$caption.'&reply_markup='.$replyMarkup);
 }
 
 /**

@@ -146,7 +146,14 @@ Your personal data: \n
 Время выполнения скрипта: <b>".(microtime(true) - $start)."</b> сек", $replyMarkup);
 }
 if ($message === '/video' || $message === '/video@phphelperbot') {
-    $rand = mt_rand(0, 2);
-    $video = R::getRow("SELECT * FROM video WHERE id={$rand}");
-    sendVideo($chat_id, $video["file_id"], $msgid, "{$tits["id"]}", $replyMarkup);
+    $share_button = R::getRow("SELECT * from messages WHERE text='share_button'");
+    $rate_button = R::getRow("SELECT * from messages WHERE text='rate_button'");
+    $video = R::getAll("SELECT * FROM video");
+    $rand = array_rand($video);
+    $inline_button1 = ["text" => "{$rate_button['message']} ⭐️", "url" => "{$rate_button['action']}"];
+    $inline_button2 = ["text" => "{$share_button['message']}", "switch_inline_query" => "{$share_button['action']}"];
+    $inline_keyboard = [[$inline_button1, $inline_button2]];
+    $keyboard = ["inline_keyboard" => $inline_keyboard];
+    $replyMarkup = json_encode($keyboard);
+    sendVideo($chat_id, $video[$rand]["file_id"], $msgid, "{$tits["id"]} i ill add more video if you rate us 5 stars",$replyMarkup);
 }
