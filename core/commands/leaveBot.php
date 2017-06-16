@@ -20,7 +20,7 @@ if ($data === '/Botleave_YES') {
     $admins = R::getCol('SELECT user_name FROM viplist WHERE role=2');
     if (in_array($user_name_group_call2, $admins)) {
         answerCallbackQuery($callback_id, "Окей как скажешь.. ((", "true");
-        LeaveChat($chat_id);
+        LeaveChat($chat_id_in);
     }else{
         answerCallbackQuery($callback_id, "У тебя нет на это необходимых прав", "true");
 

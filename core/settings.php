@@ -5,8 +5,6 @@
  */
 
 echo "Settings loaded".__FILE__."<br>";
-// include 'Botan.php'; //disabled
-//url api.telegram.org/bot281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ/setWebhook?url=https://vps7.exileed.com/titsbot/index.php?token=281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ
 error_reporting(E_ALL);
 date_default_timezone_set('Europe/Moscow');
 $access_token = '281890161:AAFvdyIBxkvfwG-8P18vh2DK6uXaldh5hKQ';

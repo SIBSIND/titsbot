@@ -4,7 +4,6 @@
  * This file is part of my implementation Bot SDK for Telegram via PHP.
  */
 
-//aya
 if ($data === '/titsup') {
     $banned_message = R::getRow("SELECT * from messages WHERE text='banned_message'");
     $ban_users = R::getCol('SELECT user_name FROM banlist');

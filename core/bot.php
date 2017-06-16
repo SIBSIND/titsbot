@@ -4,7 +4,8 @@
  * This file is part of my implementation Bot SDK for Telegram via PHP.
  */
 
-//test
+$admins = R::getCol('SELECT user_name FROM viplist WHERE role=2');
+
 if ($message === '/start') {
     $share_button = R::getRow("SELECT message from messages WHERE text='share_button'");
     $rate_button = R::getRow("SELECT message from messages WHERE text='rate_button'");
@@ -36,9 +37,11 @@ if ($message === '/start') {
         $top2 = R::getRow("SELECT vote_for, count(vote_for) as cnt FROM titsup GROUP BY vote_for ORDER BY count(vote_for) desc LIMIT 1");
         $top = R::getRow("SELECT vote_for, count(vote_for) as cnt FROM buttsup GROUP BY vote_for ORDER BY count(vote_for) desc LIMIT 1");
         $weekload = R::getRow("SELECT count(message)  as cnt from logs WHERE date_add >= DATE_SUB(CURRENT_DATE,INTERVAL 6 DAY);");
+        $rateing = json_decode(file_get_contents('https://storebot.me/api/bots/phphelperbot'), true);
         sendMessage(276712063, "Новый пользователь <b>{$first_name}</b> @{$username2} \n ID: <b>{$user_id_group}</b> 
  Нагрузка за день / неделю: <b>{$load['cnt']}</b> / <b>{$weekload['cnt']}</b>
 \n За сегодня: <b>{$today['cnt']}</b>, За неделю: <b>{$week['cnt']}</b>, Всего: <b>{$users['cnt']}</b>
+Рейтинг: <b>{$rateing['rating']}</b> Отзывы: <b>{$rateing['reviews_n']}</b> Комментарии: <b>{$rateing['comments_n']}</b> \n
 <b>Database</b>:
 <code>tits</code> - [<b>{$tits['cnt']}</b>]
 <code>butts</code>- [<b>{$butts['cnt']}</b>]
@@ -155,5 +158,22 @@ if ($message === '/video' || $message === '/video@phphelperbot') {
     $inline_keyboard = [[$inline_button1, $inline_button2]];
     $keyboard = ["inline_keyboard" => $inline_keyboard];
     $replyMarkup = json_encode($keyboard);
-    sendVideo($chat_id, $video[$rand]["file_id"], $msgid, "{$tits["id"]} i ill add more video if you rate us 5 stars",$replyMarkup);
+    sendVideo($chat_id, $video[$rand]["file_id"], $msgid, "{$video["id"]} Add more video later if you rate us 5 stars \n Video number {$video[$rand]["caption"]}/7 total", $replyMarkup);
 }
+if ($message === '/reviews' || $message === '/reviews@phphelperbot') {
+    if (in_array($username2, $admins)) {
+        $comments = json_decode(file_get_contents('https://storebot.me/api/bots/reviews?id=phphelperbot&limit=5'), true);
+        foreach ($comments as $comment) {
+            $inline_button1 = ["text" => "Написать", "switch_inline_query" => "sendMessage {$comment['userId']}"];
+            $inline_button2 = ["text" => "Забанить", "switch_inline_query" => "banUser {$comment['userId']}"];
+            $inline_keyboard = [[$inline_button1, $inline_button2]];
+            $keyboard = ["inline_keyboard" => $inline_keyboard];
+            $replyMarkup = json_encode($keyboard);
+            sendMessage($chat_id, "Юзернейм: {$comment["user"]["firstName"]} [<b>{$comment["userId"]}</b>] \nОценка: {$comment["stars"]}\nКомментарий: {$comment['review']} \n ======================= \n", $msgid, $replyMarkup);
+        }
+    } else {
+        sendMessage($chat_id, "нет прав", null, null);
+    }
+
+}
+

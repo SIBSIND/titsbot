@@ -41,7 +41,6 @@ if($notify)
 {
     require 'commands/notify.php';
 }
-
 //require 'commands/sendmessage.php';
 $custom_butts = R::getRow("SELECT * from settings WHERE custom_butts='on'");
 if($custom_butts)
